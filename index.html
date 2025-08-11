@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.ergon-bluenergy | Soluzioni Energetiche Chiavi in Mano</title>
+    <meta name="description" content=".ergon-bluenergy è il tuo partner unico e affidabile per l'indipendenza energetica. Offriamo soluzioni complete e chiavi in mano per fotovoltaico, accumulo e mobilità elettrica per privati e aziende.">
+    <meta name="keywords" content="fotovoltaico, energia rinnovabile, sistemi di accumulo, pompe di calore, colonnine di ricarica, efficienza energetica, Italia">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #0D2C54;
+            --accent-green: #1DB954;
+            --highlight-blue: #269FFB;
+            --neutral-grey: #F4F7F6;
+            --text-charcoal: #333333;
+            --white: #FFFFFF;
+            --section-padding: 100px 0;
+            --border-radius: 8px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--neutral-grey);
+            color: var(--text-charcoal);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            cursor: none;
+        }
+        
+        body.no-scroll {
+            overflow: hidden;
+        }
+
+        .cursor-dot, .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--highlight-blue);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(38, 159, 251, 0.2);
+            transition: width 0.2s ease-out, height 0.2s ease-out, background-color 0.2s ease-out;
+        }
+        
+        .cursor-outline.hover {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(29, 185, 84, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: var(--section-padding);
+            overflow: hidden;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            font-weight: 700;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-green);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: -40px auto 60px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--highlight-blue);
+            color: var(--white);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            background-color: var(--accent-green);
+            box-shadow: 0 10px 20px rgba(29, 185, 84, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--primary-blue);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            box-shadow: none;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: top 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .header.hidden {
+            top: -100px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--accent-green);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            color: var(--text-charcoal);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after, .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .hamburger-line {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-blue);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            position: relative;
+            padding-top: 80px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(13, 44, 84, 0.8), rgba(13, 44, 84, 0.5));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            color: var(--white);
+            max-width: 700px;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+        
+        .hero .animated-tagline {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--accent-green);
+            font-weight: 600;
+            height: 40px;
+        }
+
+        #typed-text {
+            border-right: 3px solid var(--accent-green);
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-green); }
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        /* About Section */
+        #about {
+            background-color: var(--white);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .about-image {
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: 0 15px 30px rgba(13, 44, 84, 0.1);
+        }
+        
+        .about-content h3 {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            padding: 40px 30px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 4px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(13, 44, 84, 0.1);
+            border-bottom-color: var(--accent-green);
+        }
+        
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 20px;
+            color: var(--highlight-blue);
+        }
+        
+        .service-card h3 {
+            font-size: 1.4rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        /* AI Simulator Section */
+        #simulator {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        #simulator .section-title {
+            color: var(--white);
+        }
+        
+        #simulator .section-title::after {
+            background-color: var(--accent-green);
+        }
+        
+        #simulator .section-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .simulator-container {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 50px;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 50px;
+            border-radius: var(--border-radius);
+        }
+        
+        .simulator-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .simulator-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .simulator-form input, .simulator-form select {
+            width: 100%;
+            padding: 12px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius);
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .simulator-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .simulator-form .btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .simulator-results h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-green);
+        }
+        
+        .result-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-item span:last-child {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--highlight-blue);
+        }
+
+        /* Projects Section */
+        #projects {
+            background-color: var(--white);
+        }
+        
+        .project-filters {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .project-filters button {
+            background: none;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            padding: 8px 20px;
+            margin: 0 5px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-filters button.active, .project-filters button:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            aspect-ratio: 4/3;
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .project-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(13, 44, 84, 0.9), transparent);
+            color: white;
+            padding: 40px 20px 20px;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+        
+        .project-item:hover .project-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .project-overlay h3 {
+            margin-bottom: 5px;
+            font-size: 1.3rem;
+        }
+        
+        .project-category {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-green);
+        }
+
+        /* Contact Section */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            background-color: var(--white);
+            padding: 50px;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 30px;
+        }
+
+        .contact-details li {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-details li svg {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            color: var(--highlight-blue);
+            flex-shrink: 0;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--highlight-blue);
+            box-shadow: 0 0 0 2px rgba(38, 159, 251, 0.2);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-blue);
+            color: rgba(255, 255, 255, 0.8);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 30px;
+            height: 2px;
+            background-color: var(--accent-green);
+        }
+        
+        .footer-col .logo {
+            color: var(--white);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+        
+        .footer-col ul li a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-green);
+            transform: translateY(-3px);
+        }
+        
+        .social-links a svg {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+        }
+        
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background-color: var(--primary-blue);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+                gap: 20px;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                color: var(--white);
+                font-size: 1.8rem;
+            }
+            
+            .header-actions .btn {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active .hamburger-line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 6px);
+                background-color: var(--white);
+            }
+            .hamburger.active .hamburger-line:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active .hamburger-line:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -6px);
+                background-color: var(--white);
+            }
+            
+            .hamburger.active .hamburger-line {
+                 background-color: var(--primary-blue);
+            }
+            
+            .nav-links.active ~ .hamburger .hamburger-line {
+                 background-color: var(--white);
+            }
+
+            .about-grid, .contact-wrapper, .simulator-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero .animated-tagline {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .hero {
+                text-align: center;
+            }
+            
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .projects-grid {
+                 grid-template-columns: 1fr;
+            }
+            
+            .contact-wrapper {
+                padding: 30px;
+            }
+
+            .nav-container {
+                padding: 0 20px;
+            }
+            
+            .cursor-dot, .cursor-outline {
+                display: none;
+            }
+            
+            body {
+                cursor: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <header class="header">
+        <div class="nav-container">
+            <a href="#home" class="logo">.ergon<span>-bluenergy</span></a>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">Chi Siamo</a></li>
+                <li><a href="#services">Servizi</a></li>
+                <li><a href="#projects">Progetti</a></li>
+                <li><a href="#contact">Contatti</a></li>
+            </ul>
+            <div class="header-actions">
+                <a href="#contact" class="btn">Richiedi Consulenza</a>
+            </div>
+            <div class="hamburger">
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+                <div class="hamburger-line"></div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>La Tua Indipendenza Energetica, Chiavi in Mano.</h1>
+                    <div class="animated-tagline">
+                        <span id="typed-text"></span>
+                    </div>
+                    <p>Progettiamo, installiamo e gestiamo il tuo impianto a energia rinnovabile, garantendoti massimo risparmio e serenità per la tua casa o azienda.</p>
+                    <a href="#contact" class="btn">Scopri la Soluzione per Te</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title reveal">Il Tuo Partner Unico per l'Energia del Futuro</h2>
+                <p class="section-subtitle reveal">Dal 2010, trasformiamo il modo in cui i nostri clienti consumano energia, rendendoli protagonisti della transizione ecologica.</p>
+                <div class="about-grid">
+                    <div class="about-content reveal">
+                        <h3>Dall'idea alla realtà, senza pensieri.</h3>
+                        <p>La nostra filosofia "Chiavi in Mano" è la nostra promessa: ci occupiamo di tutto. Dalla prima analisi di fattibilità, alla gestione delle pratiche burocratiche, fino all'installazione a regola d'arte e al supporto post-vendita. </p>
+                        <p>Scegliere .ergon-bluenergy significa affidarsi a un team di esperti che lavora con un solo obiettivo: la tua completa soddisfazione e indipendenza energetica. Utilizziamo solo i migliori componenti sul mercato per garantire impianti performanti e duraturi nel tempo.</p>
+                        <a href="#services" class="btn btn-secondary">I Nostri Servizi</a>
+                    </div>
+                    <div class="reveal">
+                        <img src="https://images.unsplash.com/photo-1629733477813-574314483b77?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Team di ingegneri al lavoro su un progetto di energia rinnovabile" class="about-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <div class="container">
+                <h2 class="section-title reveal">Soluzioni Complete per Ogni Esigenza</h2>
+                <p class="section-subtitle reveal">Offriamo un portafoglio completo di tecnologie per l'efficienza energetica, personalizzate per clienti privati e aziende.</p>
+                <div class="services-grid">
+                    <div class="service-card reveal">
+                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" /></svg>
+                        <h3>Impianti Fotovoltaici</h3>
+                        <p>Produci la tua energia pulita e riduci drasticamente la bolletta con i nostri impianti fotovoltaici ad alta efficienza.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21 10.5V18a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 18V6.75A2.25 2.25 0 0 1 5.25 4.5h7.5a2.25 2.25 0 0 1 2.25 2.25v3m-9 7.5h9A2.25 2.25 0 0 0 21 18v-5.25a2.25 2.25 0 0 0-2.25-2.25H12a2.25 2.25 0 0 0-2.25 2.25v5.25Z" /></svg>
+                        <h3>Sistemi di Accumulo</h3>
+                        <p>Massimizza l'autoconsumo e diventa indipendente dalla rete. Immagazzina l'energia prodotta per usarla quando ne hai più bisogno.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.826-1.106-2.257 0-3.083C10.544 7.66 11.27 7.5 12 7.5c.88 0 1.697.234 2.416.658" /></svg>
+                        <h3>Pompe di Calore</h3>
+                        <p>La soluzione più efficiente per il riscaldamento, raffrescamento e produzione di acqua calda sanitaria, alimentata dalla tua energia solare.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0 1 12 21 8.25 8.25 0 0 1 6.038 7.047 8.287 8.287 0 0 0 9 9.601a8.287 8.287 0 0 0 3-2.553Z" /></svg>
+                        <h3>Solare Termico</h3>
+                        <p>Sfrutta il calore del sole per produrre acqua calda sanitaria a costo zero, una soluzione semplice e altamente vantaggiosa.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V14.25m-17.25 4.5v-1.875a3.375 3.375 0 0 1 3.375-3.375h9.75a3.375 3.375 0 0 1 3.375 3.375v1.875M10.5 6h3m-3 3h3" /></svg>
+                        <h3>Comunità Energetiche</h3>
+                        <p>Uniamo cittadini, aziende e enti locali per produrre, consumare e condividere energia rinnovabile a livello locale.</p>
+                    </div>
+                    <div class="service-card reveal">
+                        <svg class="service-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 7.5h7.5v.01L12 12.75l-3.75-5.24V7.5ZM12 15.375a3.375 3.375 0 0 1-3.375-3.375h6.75A3.375 3.375 0 0 1 12 15.375Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75A2.25 2.25 0 0 0 5.25 6v12a2.25 2.25 0 0 0 2.25 2.25h9a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25h-9Z" /></svg>
+                        <h3>Stazioni di Ricarica EV</h3>
+                        <p>Entra nel futuro della mobilità. Installiamo colonnine di ricarica per veicoli elettrici per la tua casa o la tua attività commerciale.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="simulator">
+            <div class="container">
+                <h2 class="section-title reveal">Calcola il Tuo Risparmio</h2>
+                 <p class="section-subtitle reveal">Usa il nostro simulatore intelligente per ottenere una stima immediata dei benefici di un impianto fotovoltaico per la tua casa.</p>
+                <div class="simulator-container reveal">
+                    <div class="simulator-form">
+                        <div class="form-group">
+                            <label for="bill">Spesa media mensile in bolletta (€)</label>
+                            <input type="number" id="bill" placeholder="Es. 150">
+                        </div>
+                        <div class="form-group">
+                             <label for="region">Regione di residenza</label>
+                             <select id="region">
+                                 <option value="nord">Nord Italia</option>
+                                 <option value="centro">Centro Italia</option>
+                                 <option value="sud">Sud Italia e Isole</option>
+                             </select>
+                        </div>
+                         <div class="form-group">
+                             <label for="roof-type">Tipologia Tetto</label>
+                             <select id="roof-type">
+                                 <option value="piana">Tetto a Falda</option>
+                                 <option value="falda">Tetto Piano</option>
+                             </select>
+                        </div>
+                        <button class="btn" id="calculate-btn">Calcola Ora</button>
+                    </div>
+                    <div class="simulator-results">
+                        <h3>Risultati Stimati</h3>
+                        <div class="result-item">
+                            <span>Risparmio Annuo</span>
+                            <span id="annual-savings">€ 0</span>
+                        </div>
+                        <div class="result-item">
+                            <span>Potenza Consigliata</span>
+                            <span id="recommended-kw">0 kWp</span>
+                        </div>
+                         <div class="result-item">
+                            <span>Rientro Investimento</span>
+                            <span id="roi-years">0 anni</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <h2 class="section-title reveal">I Nostri Progetti</h2>
+                <p class="section-subtitle reveal">Dalle ville private ai complessi industriali, portiamo l'efficienza energetica ovunque. Ecco alcuni dei nostri lavori.</p>
+                <div class="project-filters reveal">
+                    <button class="filter-btn active" data-filter="all">Tutti</button>
+                    <button class="filter-btn" data-filter="privati">Privati</button>
+                    <button class="filter-btn" data-filter="aziende">Aziende</button>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-item reveal" data-category="privati">
+                        <img src="https://images.unsplash.com/photo-1599827551929-c0b704a43a3a?q=80&w=2831&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Villa moderna con pannelli solari sul tetto">
+                        <div class="project-overlay">
+                            <h3>Villa Unifamiliare, Como</h3>
+                            <span class="project-category">Privati</span>
+                        </div>
+                    </div>
+                    <div class="project-item reveal" data-category="aziende">
+                        <img src="https://images.unsplash.com/photo-1628551465969-4f7832825835?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Capannone industriale con impianto fotovoltaico">
+                        <div class="project-overlay">
+                            <h3>Azienda Agricola, Modena</h3>
+                            <span class="project-category">Aziende</span>
+                        </div>
+                    </div>
+                    <div class="project-item reveal" data-category="privati">
+                        <img src="https://images.unsplash.com/photo-1624142868297-3400a4ba6923?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Casa con pannelli solari e auto elettrica in carica">
+                        <div class="project-overlay">
+                            <h3>Casa con EV Charger, Roma</h3>
+                            <span class="project-category">Privati</span>
+                        </div>
+                    </div>
+                    <div class="project-item reveal" data-category="aziende">
+                        <img src="https://images.unsplash.com/photo-1558260573-39a3f2a36b3c?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pannelli solari su tetto di un hotel">
+                        <div class="project-overlay">
+                            <h3>Hotel & Resort, Sardegna</h3>
+                            <span class="project-category">Aziende</span>
+                        </div>
+                    </div>
+                     <div class="project-item reveal" data-category="aziende">
+                        <img src="https://images.unsplash.com/photo-1545299434-030a2f7c0a76?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pannelli solari in un campo">
+                        <div class="project-overlay">
+                            <h3>Parco Fotovoltaico, Puglia</h3>
+                            <span class="project-category">Aziende</span>
+                        </div>
+                    </div>
+                     <div class="project-item reveal" data-category="privati">
+                        <img src="https://images.unsplash.com/photo-1630043812241-10c7c3461461?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tetto di un condominio con pannelli solari">
+                        <div class="project-overlay">
+                            <h3>Condominio, Milano</h3>
+                            <span class="project-category">Privati</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title reveal">Iniziamo il Tuo Progetto</h2>
+                <p class="section-subtitle reveal">Compila il modulo per una consulenza gratuita e non vincolante. Un nostro esperto ti contatterà entro 24 ore.</p>
+                <div class="contact-wrapper reveal">
+                    <div class="contact-info">
+                        <h3>Contattaci Direttamente</h3>
+                        <p>Preferisci parlare con noi? Siamo a tua disposizione per qualsiasi domanda o chiarimento.</p>
+                        <ul class="contact-details">
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></svg>
+                                <span>Via dell'Innovazione, 1, 20126 Milano MI, Italia</span>
+                            </li>
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.211-.992-.55-1.33l-2.914-2.915c-.34-.34-.814-.438-1.244-.257l-1.543.515a2.25 2.25 0 0 1-2.313-2.313l.515-1.543c.181-.43.083-.904-.257-1.244l-2.915-2.914a1.06 1.06 0 0 0-1.33-.55H6.75A2.25 2.25 0 0 0 4.5 4.5v2.25Z" /></svg>
+                                <span>+39 02 123 4567</span>
+                            </li>
+                             <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" /></svg>
+                                <span>info@ergonbluenergy.com</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <form action="#" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Il tuo nome" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="La tua email" required>
+                        </div>
+                         <div class="form-group">
+                            <textarea name="message" placeholder="Descrivi brevemente il tuo progetto..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Invia Richiesta</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#home" class="logo">.ergon<span>-bluenergy</span></a>
+                    <p style="margin-top: 20px;">La tua indipendenza energetica, chiavi in mano. Dal 2010.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Link Utili</h4>
+                    <ul>
+                        <li><a href="#about">Chi Siamo</a></li>
+                        <li><a href="#services">Servizi</a></li>
+                        <li><a href="#projects">Progetti</a></li>
+                        <li><a href="#contact">Contatti</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-col">
+                    <h4>I Nostri Servizi</h4>
+                    <ul>
+                        <li><a href="#services">Impianti Fotovoltaici</a></li>
+                        <li><a href="#services">Sistemi di Accumulo</a></li>
+                        <li><a href="#services">Pompe di Calore</a></li>
+                        <li><a href="#services">Stazioni di Ricarica EV</a></li>
+                    </ul>
+                </div>
+                 <div class="footer-col">
+                    <h4>Seguici</h4>
+                    <div class="social-links">
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg></a>
+                        <a href="#"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+                    </div>
+                 </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 .ergon-bluenergy S.r.l. | P.IVA 01234567890 | Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // --- Cursor Effect ---
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            const hoverables = document.querySelectorAll('a, button, .service-card, .project-item');
+
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                cursorDot.style.opacity = '1';
+                cursorOutline.style.opacity = '1';
+
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: 'forwards' });
+            });
+
+            hoverables.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursorOutline.classList.add('hover');
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursorOutline.classList.remove('hover');
+                });
+            });
+
+            // --- Sticky Header Hide/Show on Scroll ---
+            const header = document.querySelector('.header');
+            let lastScrollY = window.scrollY;
+            window.addEventListener('scroll', () => {
+                if (lastScrollY < window.scrollY && window.scrollY > 150) {
+                    header.classList.add('hidden');
+                } else {
+                    header.classList.remove('hidden');
+                }
+                lastScrollY = window.scrollY;
+            });
+            
+            // --- Hamburger Menu ---
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const navLinkItems = document.querySelectorAll('.nav-links a');
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
+            });
+            
+            navLinkItems.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        hamburger.classList.remove('active');
+                        navLinks.classList.remove('active');
+                        document.body.classList.remove('no-scroll');
+                    }
+                });
+            });
+
+            // --- Active Nav Link on Scroll ---
+            const sections = document.querySelectorAll('section[id]');
+            const navLi = document.querySelectorAll('.nav-links a');
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                navLi.forEach(a => {
+                    a.classList.remove('active');
+                    if (a.getAttribute('href') == '#' + current) {
+                        a.classList.add('active');
+                    }
+                });
+            });
+
+            // --- Typed.js-like effect for Hero Section ---
+            const typedTextSpan = document.getElementById('typed-text');
+            const textArray = ["Fotovoltaico", "Sistemi di Accumulo", "Pompe di Calore", "Mobilità Elettrica"];
+            const typingDelay = 150;
+            const erasingDelay = 100;
+            const newTextDelay = 2000;
+            let textArrayIndex = 0;
+            let charIndex = 0;
+
+            function type() {
+                if (charIndex < textArray[textArrayIndex].length) {
+                    typedTextSpan.textContent += textArray[textArrayIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, typingDelay);
+                } else {
+                    setTimeout(erase, newTextDelay);
+                }
+            }
+
+            function erase() {
+                if (charIndex > 0) {
+                    typedTextSpan.textContent = textArray[textArrayIndex].substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(erase, erasingDelay);
+                } else {
+                    textArrayIndex++;
+                    if (textArrayIndex >= textArray.length) textArrayIndex = 0;
+                    setTimeout(type, typingDelay + 1100);
+                }
+            }
+            
+            if (textArray.length) setTimeout(type, newTextDelay + 250);
+
+            // --- Reveal on Scroll Animation ---
+            const revealElements = document.querySelectorAll('.reveal');
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+
+            // --- Project Filter ---
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectItems = document.querySelectorAll('.project-item');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    const filter = btn.dataset.filter;
+
+                    projectItems.forEach(item => {
+                        item.style.display = 'none';
+                        if (filter === 'all' || item.dataset.category === filter) {
+                             setTimeout(() => {
+                                item.style.display = 'block';
+                            }, 10);
+                        }
+                    });
+                });
+            });
+
+            // --- AI Savings Simulator ---
+            const calculateBtn = document.getElementById('calculate-btn');
+            calculateBtn.addEventListener('click', () => {
+                const bill = parseFloat(document.getElementById('bill').value) || 0;
+                const region = document.getElementById('region').value;
+                
+                if (bill === 0) {
+                    alert('Per favore, inserisci un valore per la bolletta mensile.');
+                    return;
+                }
+                
+                let sunFactor = 1;
+                if(region === 'centro') sunFactor = 1.2;
+                if(region === 'sud') sunFactor = 1.4;
+
+                const annualCost = bill * 12;
+                const annualSavings = annualCost * 0.85 * sunFactor;
+                const recommendedKw = Math.ceil((annualCost / 350) * sunFactor);
+                const investment = recommendedKw * 2200; // Estimated cost per kWp
+                const roi = investment / annualSavings;
+
+                document.getElementById('annual-savings').textContent = `€ ${annualSavings.toFixed(0)}`;
+                document.getElementById('recommended-kw').textContent = `${recommendedKw} kWp`;
+                document.getElementById('roi-years').textContent = `${roi.toFixed(1)} anni`;
+            });
+        });
+    </script>
+
+</body>
+</html>
